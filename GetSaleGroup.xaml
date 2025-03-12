@@ -1,0 +1,481 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="TCode_SE16" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="dt_DataSAP" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="strPathResult" Type="InArgument(x:String)" />
+    <x:Property Name="strCurrentDate" Type="InArgument(x:String)" />
+    <x:Property Name="dt_SaleGroup" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="strPathSaleGroup" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>TCode_SE16_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="TCode_SE16" sap:VirtualizedContainerService.HintSize="1116,4104" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="SE16" sap:VirtualizedContainerService.HintSize="484,4081" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="strAssignment" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ucas:CallTransaction DisplayName="Call Transaction 'saplogon.exe SAP'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="CallTransaction_1" Transaction="SE16">
+        <ucas:CallTransaction.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f35dae09-9074-41bd-a149-45719afe0eae" InformativeScreenshot="4e555e40a7c9d3464ebf6bfca5859b55" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP Easy Access  MPSC Menu' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:CallTransaction.Target>
+      </ucas:CallTransaction>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  Table Name'" sap:VirtualizedContainerService.HintSize="450,187" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="VBAK[k(enter)]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2a905261-fea4-451b-918b-37de97b85fcb" InformativeScreenshot="b1f66a5f6658573e937f0be4cf166e06" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='Data Browser: Initial Screen' /&gt;&lt;sap id='usr/ctxtDATABROWSE-TABLENAME' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strAssignment]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[String.join(Environment.NewLine,(From r In dt_DataSAP Select r.item("Assignment")))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="450,92" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[strAssignment]" />
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: Data Browser: Table VBAK: Selection Screen" sap:VirtualizedContainerService.HintSize="450,1497" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="89eed61f-d57c-40f5-bf38-ed0a9332f5a0" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,1174" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button Multiple'" sap:VirtualizedContainerService.HintSize="382,189" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="89eed61f-d57c-40f5-bf38-ed0a9332f5a0" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="571, 180, 27, 22" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Button Multiple'" FullSelectorArgument="&lt;sap id='usr/btn%_I1_%_APP_%-VALU_PUSH' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/btn%_I1_%_APP_%-VALU_PUSH' /&gt;" Guid="38eecb8c-b953-400f-8448-85778fd344ce" InformativeScreenshot="2de0deb8b48cf8344a78aca3b5402bf1.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='Data Browser: Table VBAK: Selection Screen' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button Upload'" sap:VirtualizedContainerService.HintSize="382,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_1" Item="Upload from Clipboard   (Shift+F12)">
+                <ucas:ClickToolbarButton.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="16">
+                    <x:String xml:space="preserve">Copy   (F8)</x:String>
+                    <x:String xml:space="preserve">Check entries   (Enter)</x:String>
+                    <x:String xml:space="preserve">Define Selection Options   (F2)</x:String>
+                    <x:String xml:space="preserve">Insert line   (Shift+F1)</x:String>
+                    <x:String xml:space="preserve">Delete Selection Row   (Shift+F2)</x:String>
+                    <x:String xml:space="preserve">Delete Entire Selection   (Shift+F4)</x:String>
+                    <x:String xml:space="preserve">Help on screen   (Shift+F6)</x:String>
+                    <x:String xml:space="preserve">Multiple selection..   (F6)</x:String>
+                    <x:String xml:space="preserve">Import from Text File   (Shift+F11)</x:String>
+                    <x:String xml:space="preserve">Upload from Clipboard   (Shift+F12)</x:String>
+                    <x:String xml:space="preserve">Cancel   (F12)</x:String>
+                  </scg:List>
+                </ucas:ClickToolbarButton.Items>
+                <ucas:ClickToolbarButton.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8f6061a2-fa99-4752-8421-c04d0cd2daa4" InformativeScreenshot="5b8e66bc6ca35cbf5ff27f53669f536d" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Multiple Selection for Sales Document' idx='*' /&gt;&lt;sap id='tbar[0]/btn[24]' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ucas:ClickToolbarButton.Target>
+              </ucas:ClickToolbarButton>
+              <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Copy (F8)'" sap:VirtualizedContainerService.HintSize="382,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_2" Item="Copy   (F8)">
+                <ucas:ClickToolbarButton.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="16">
+                    <x:String xml:space="preserve">Copy   (F8)</x:String>
+                    <x:String xml:space="preserve">Check entries   (Enter)</x:String>
+                    <x:String xml:space="preserve">Define Selection Options   (F2)</x:String>
+                    <x:String xml:space="preserve">Insert line   (Shift+F1)</x:String>
+                    <x:String xml:space="preserve">Delete Selection Row   (Shift+F2)</x:String>
+                    <x:String xml:space="preserve">Delete Entire Selection   (Shift+F4)</x:String>
+                    <x:String xml:space="preserve">Help on screen   (Shift+F6)</x:String>
+                    <x:String xml:space="preserve">Multiple selection..   (F6)</x:String>
+                    <x:String xml:space="preserve">Import from Text File   (Shift+F11)</x:String>
+                    <x:String xml:space="preserve">Upload from Clipboard   (Shift+F12)</x:String>
+                    <x:String xml:space="preserve">Cancel   (F12)</x:String>
+                  </scg:List>
+                </ucas:ClickToolbarButton.Items>
+                <ucas:ClickToolbarButton.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e1be1ae3-74d1-4409-a493-349518731152" InformativeScreenshot="422f647df9255ac1ac81ece12796ebc0" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Multiple Selection for Sales Document' idx='*' /&gt;&lt;sap id='tbar[0]/btn[8]' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ucas:ClickToolbarButton.Target>
+              </ucas:ClickToolbarButton>
+              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="382,167" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="%[k(pgdn)]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="fd187274-2300-4f6e-a716-aa7142b193b2">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'TextField Maximum'" EmptyField="True" sap:VirtualizedContainerService.HintSize="382,187" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[Nothing]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="42ae8cff-40bf-4086-9b30-8a2540be8fd2" InformativeScreenshot="041e175098d63a815af91f23e194a7f9" Selector="&lt;sap id='usr/txtMAX_SEL' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Execute (F8)'" sap:VirtualizedContainerService.HintSize="382,185" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_3" Item="Execute   (F8)">
+                <ucas:ClickToolbarButton.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="8">
+                    <x:String xml:space="preserve">Execute   (F8)</x:String>
+                    <x:String xml:space="preserve">Selection Options   (F2)</x:String>
+                    <x:String xml:space="preserve">Delete Selection Row   (Shift+F2)</x:String>
+                    <x:String xml:space="preserve">Selection Screen Help   (Shift+F6)</x:String>
+                    <x:String xml:space="preserve">Get Variant...   (Shift+F5)</x:String>
+                    <x:String xml:space="preserve">Number of Entries   (Ctrl+F7)</x:String>
+                  </scg:List>
+                </ucas:ClickToolbarButton.Items>
+                <ucas:ClickToolbarButton.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6f2c98eb-b220-4e1c-9871-da94d3adf90c" InformativeScreenshot="cf77b32fea6cd917ecbe3daff0efd65e" Selector="&lt;sap id='tbar[1]/btn[8]' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ucas:ClickToolbarButton.Target>
+              </ucas:ClickToolbarButton>
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="-7, -7, 1934, 1094" FilePath="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE8SURBVFhHYxgFo2AUjIJBAxxrVls61ay5T2dcC7Ue7AAnoMB/emHHmjWz7KtXMkGtp68DgJbPsCtfzQi1GgLo5QCg5dMcy1cgLH//5UcECG89fa+5dsnR/5Ti0nkH/ztWrcJuefWaKXYVq1B9/v7Lz//Uwk/ffP6f3LX2v335cmyWT7KqQPI5DGAziBwMsjy+ddl/m6IFQMtWo1s+wbZ4CablIIDNMFLxk9ef/se1LMVuec2aPrMStGBHBtgMJAWDLI8FWV6M1fIeqDW4AdCQxSB89f7LfWsPXfm/9uBlknBsCzDYsVlevboLagVxwKZovotd6ZL/diWLScL25cuwWL6mA2os8QBoCFXKAWCwt0GNJA1QqSBqhhpHOqDUAUCfN0KNIg8AHaAJNGg+mTgXaswoGAWjYBSQCBgYAMLf0dVJBbU9AAAAAElFTkSuQmCC" InformativeScreenshot="0d6967db1ca457a2b78f4c3e1746c704.png" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='Data Browser: Table VBAK: Selection Screen' /&gt;" Title="Data Browser: Table VBAK: Selection Screen" />
+        </uix:NApplicationCard.TargetApp>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uix:NApplicationCard>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button Local'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_4" Item="Spreadsheet...   (Ctrl+Shift+F7)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="32">
+            <x:String xml:space="preserve">Display   (F7)</x:String>
+            <x:String xml:space="preserve">Choose Detail   (F2)</x:String>
+            <x:String xml:space="preserve">Refresh   (F8)</x:String>
+            <x:String xml:space="preserve">Check Table...   (Shift+F7)</x:String>
+            <x:String xml:space="preserve">Select All   (F9)</x:String>
+            <x:String xml:space="preserve">Deselect All   (Shift+F6)</x:String>
+            <x:String xml:space="preserve">Sort in Ascending Order   (Ctrl+F4)</x:String>
+            <x:String xml:space="preserve">Sort in Descending Order   (Ctrl+Shift+F4)</x:String>
+            <x:String xml:space="preserve">Set Filter   (Ctrl+F5)</x:String>
+            <x:String xml:space="preserve">Display Sum   (Shift+F8)</x:String>
+            <x:String xml:space="preserve">Print Preview   (Ctrl+Shift+F10)</x:String>
+            <x:String xml:space="preserve">Spreadsheet...   (Ctrl+Shift+F7)</x:String>
+            <x:String xml:space="preserve">Local File...   (Ctrl+Shift+F9)</x:String>
+            <x:String xml:space="preserve">Mail Recipient   (Ctrl+F7)</x:String>
+            <x:String xml:space="preserve">Change Layout...   (Ctrl+F8)</x:String>
+            <x:String xml:space="preserve">Select Layout...   (Ctrl+F9)</x:String>
+            <x:String xml:space="preserve">Save Layout...   (Ctrl+F10)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d05881a4-eedf-452d-95ef-8d5a0d3f4c9e" InformativeScreenshot="7e3ce7f76bdc7a37df58fec73964559c" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*' /&gt;&lt;sap id='tbar[1]/btn[45]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Continue (Enter)'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_5" Item="Continue   (Enter)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="4">
+            <x:String xml:space="preserve">Continue   (Enter)</x:String>
+            <x:String xml:space="preserve">Cancel   (F12)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="46fff818-800f-4c9a-b919-f1cb6ee81029" InformativeScreenshot="4b71085f890c8ff1e3563afae7c55f7c" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Select Spreadsheet' idx='*' /&gt;&lt;sap id='tbar[0]/btn[0]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  Directory'" sap:VirtualizedContainerService.HintSize="450,187" sap2010:WorkflowViewState.IdRef="TypeInto_4" Text="[strPathResult]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="58d6bfb1-8796-4fc4-80ae-ded6a001011b" InformativeScreenshot="60d5adaf3ac2e688097a952266da80cb" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='*' idx='*' /&gt;&lt;sap id='usr/ctxtDY_PATH' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  File Name'" sap:VirtualizedContainerService.HintSize="450,187" sap2010:WorkflowViewState.IdRef="TypeInto_5" Text="[&quot;Sale_Group_&quot;+strCurrentDate+&quot;.xlsx&quot;]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="47093530-cc27-46b9-a55c-a2b34eac6346" InformativeScreenshot="b36361f2b543f2b445c4b5f95c0b5a02" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='*' idx='*' /&gt;&lt;sap id='usr/ctxtDY_FILENAME' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strPathSaleGroup]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[strPathResult+"Sale_Group_"+strCurrentDate+".xlsx"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Replace'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_6" Item="Replace existing file   (Ctrl+S)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="4">
+            <x:String xml:space="preserve">Create new file   (Enter)</x:String>
+            <x:String xml:space="preserve">Replace existing file   (Ctrl+S)</x:String>
+            <x:String xml:space="preserve">Append data to existing file   (F7)</x:String>
+            <x:String xml:space="preserve">Cancel   (F12)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2fdd0550-8f8c-40fa-9b9e-3f37ec1c2c97" InformativeScreenshot="6e5511db61b43031448809e370640b31" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='*' idx='*' /&gt;&lt;sap id='tbar[0]/btn[11]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Exit (Shift+F3)'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_7" Item="Exit   (Shift+F3)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="16">
+            <x:String>Enter</x:String>
+            <x:String>Close Command Field</x:String>
+            <x:String xml:space="preserve">Back   (F3)</x:String>
+            <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+            <x:String xml:space="preserve">Cancel   (F12)</x:String>
+            <x:String xml:space="preserve">Print   (Ctrl+P)</x:String>
+            <x:String xml:space="preserve">Find   (Ctrl+F)</x:String>
+            <x:String>New GUI Window</x:String>
+            <x:String>Generates shortcut</x:String>
+            <x:String xml:space="preserve">Help   (F1)</x:String>
+            <x:String>Customize Local Layout (Alt+F12)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c543450d-b6cb-46fd-9f2e-ef47a8136bc4" InformativeScreenshot="856a04e4ce18fa243c042f5c718ac2ef" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*' /&gt;&lt;sap id='tbar[0]/btn[15]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Exit (Shift+F3)'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_8" Item="Exit   (Shift+F3)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="16">
+            <x:String>Enter</x:String>
+            <x:String>Close Command Field</x:String>
+            <x:String xml:space="preserve">Save as Variant...   (Ctrl+S)</x:String>
+            <x:String xml:space="preserve">Back   (F3)</x:String>
+            <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+            <x:String xml:space="preserve">Cancel   (F12)</x:String>
+            <x:String xml:space="preserve">Execute and Print   (Ctrl+P)</x:String>
+            <x:String>New GUI Window</x:String>
+            <x:String>Generates shortcut</x:String>
+            <x:String xml:space="preserve">Help   (F1)</x:String>
+            <x:String>Customize Local Layout (Alt+F12)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="838c4c5e-a116-4e63-9b57-7f6918f0821a" InformativeScreenshot="0e219267bf017c985785c8733717fabf" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*' /&gt;&lt;sap id='tbar[0]/btn[15]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Exit (Shift+F3)'" sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_9" Item="Exit   (Shift+F3)">
+        <ucas:ClickToolbarButton.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="16">
+            <x:String xml:space="preserve">Table Contents   (Enter)</x:String>
+            <x:String>Close Command Field</x:String>
+            <x:String xml:space="preserve">Back   (F3)</x:String>
+            <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+            <x:String xml:space="preserve">Cancel   (F12)</x:String>
+            <x:String>New GUI Window</x:String>
+            <x:String>Generates shortcut</x:String>
+            <x:String xml:space="preserve">Help   (F1)</x:String>
+            <x:String>Customize Local Layout (Alt+F12)</x:String>
+          </scg:List>
+        </ucas:ClickToolbarButton.Items>
+        <ucas:ClickToolbarButton.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="364ee409-25e9-4588-8769-b3bd5ab1bde5" InformativeScreenshot="419b0f652ca8f1a84ae0fe6973a7e449" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*' /&gt;&lt;sap id='tbar[0]/btn[15]' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ucas:ClickToolbarButton.Target>
+      </ucas:ClickToolbarButton>
+      <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="450,165" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="excel.exe" />
+      <ui:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[dt_SaleGroup]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="450,111" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[strPathResult+&quot;Sale_Group_&quot;+strCurrentDate+&quot;.xlsx&quot;]" />
+    </Sequence>
+  </Sequence>
+</Activity>
