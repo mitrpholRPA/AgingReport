@@ -57,7 +57,7 @@
       "Name": "rerunDate",
       "DisplayName": "rerunDate",
       "Category": null,
-      "Tooltip": "dd.MM.yyyy",
+      "Tooltip": "yyyy-MM-dd",
       "Placeholder": null,
       "Widget": null,
       "IsRequired": false,

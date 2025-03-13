@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,1184</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>765.6,1128.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SAP_Log_On_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,7 +101,7 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SAP_Log_On" sap:VirtualizedContainerService.HintSize="449.6,1119.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SAP_Log_On" sap:VirtualizedContainerService.HintSize="449.6,1064" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="sapUser" />
       <Variable x:TypeArguments="ss:SecureString" Name="sapPassword" />
@@ -111,7 +111,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="387.2,52.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="387.2,84.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -138,9 +138,9 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Logon SAP: &quot;+strSAPServer+&quot;  Client: &quot;+strClientNo]" />
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[strUserAccount]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="UAT" sap:VirtualizedContainerService.HintSize="387.2,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sapPassword]" Username="[sapUser]" />
-    <ucas:Logon Window="{x:Null}" ConnectionName="[strSAPServer]" DelayBetweenRetries="500" DisplayName="SAP Logon" sap:VirtualizedContainerService.HintSize="387.2,139.2" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="5" SAPLogonPath="[strSAPPath]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Logon SAP: &quot;+strSAPServer+&quot;  Client: &quot;+strClientNo]" />
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[strUserAccount]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Accounting/Auto posting payment Oversea" sap:VirtualizedContainerService.HintSize="387.2,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sapPassword]" Username="[sapUser]" />
+    <ucas:Logon Window="{x:Null}" ConnectionName="[strSAPServer]" DelayBetweenRetries="500" DisplayName="SAP Logon" sap:VirtualizedContainerService.HintSize="387.2,171.2" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="5" SAPLogonPath="[strSAPPath]" />
     <ucas:Login Password="{x:Null}" Window="{x:Null}" Client="240" DisplayName="SAP Login 'saplogon.exe  SAP'" sap:VirtualizedContainerService.HintSize="387.2,369.6" sap2010:WorkflowViewState.IdRef="Login_1" IsSecure="True" Language="EN" MultiLogonOptionToChoose="Multiple" SecurePassword="[sapPassword]" Timeout="5000" Username="[sapUser]">
       <ucas:Login.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bf54e94a-44cd-4a9d-933d-3f96a73c26e7" InformativeScreenshot="c4365a98b0d9f91a14360d23ea9497a3" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP' /&gt;">
